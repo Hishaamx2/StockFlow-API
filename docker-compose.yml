@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: stockflow
+      POSTGRES_PASSWORD: stockflow_dev
+      POSTGRES_DB: stockflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - stockflow_pgdata:/var/lib/postgresql/data
+
+volumes:
+  stockflow_pgdata:
