@@ -3,6 +3,8 @@ using StockFlow.API.Data;
 using StockFlow.API.Interfaces;
 using StockFlow.API.Models;
 
+//Does the requested HTTP task
+
 namespace StockFlow.API.Repositories;
 
 public class ItemRepository(AppDbContext context) : IItemRepository

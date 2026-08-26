@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockFlow.API.Dtos;
 using StockFlow.API.Interfaces;
@@ -27,6 +28,7 @@ public class WarehousesController(IWarehouseRepository warehouseRepository) : Co
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<WarehouseDto>> Create(WarehouseWriteDto dto)
     {
         var warehouse = new Warehouse
@@ -40,6 +42,7 @@ public class WarehousesController(IWarehouseRepository warehouseRepository) : Co
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> Update(int id, WarehouseWriteDto dto)
     {
         var warehouse = new Warehouse
@@ -57,6 +60,7 @@ public class WarehousesController(IWarehouseRepository warehouseRepository) : Co
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
         var deleted = await warehouseRepository.DeleteAsync(id);

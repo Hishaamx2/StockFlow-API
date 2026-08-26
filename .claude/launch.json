@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "stockflow-api",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "StockFlow/StockFlow.API"],
+      "port": 5177
+    }
+  ]
+}

@@ -9,11 +9,16 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public DbSet<Warehouse> Warehouses => Set<Warehouse>();  //there is a warehouse and there is an items table
     public DbSet<Item> Items => Set<Item>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Item>()
             .HasIndex(i => i.Sku)
+            .IsUnique();
+
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.Username)
             .IsUnique();
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockFlow.API.Dtos;
 using StockFlow.API.Interfaces;
@@ -29,6 +30,7 @@ public class ItemsController(IItemRepository itemRepository) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize] //--> Program.cs check validation
     public async Task<ActionResult<ItemDto>> Create(ItemWriteDto dto)
     {
         var item = new Item
@@ -45,6 +47,7 @@ public class ItemsController(IItemRepository itemRepository) : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> Update(int id, ItemWriteDto dto)
     {
         var item = new Item
@@ -65,6 +68,7 @@ public class ItemsController(IItemRepository itemRepository) : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
         var deleted = await itemRepository.DeleteAsync(id);
