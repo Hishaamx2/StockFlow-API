@@ -10,5 +10,20 @@ services:
     volumes:
       - stockflow_pgdata:/var/lib/postgresql/data
 
+  api:
+    build:
+      context: ./StockFlow/StockFlow.API
+    ports:
+      - "5177:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=stockflow;Username=stockflow;Password=stockflow_dev"
+      Jwt__Key: "dev-only-signing-key-change-this-before-any-real-deployment-1234567890"
+      Jwt__Issuer: "StockFlow.API"
+      Jwt__Audience: "StockFlow.Client"
+      Jwt__ExpiryMinutes: "60"
+    depends_on:
+      - postgres
+
 volumes:
   stockflow_pgdata:

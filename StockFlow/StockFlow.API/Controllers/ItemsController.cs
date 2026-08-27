@@ -4,6 +4,8 @@ using StockFlow.API.Dtos;
 using StockFlow.API.Interfaces;
 using StockFlow.API.Models;
 
+//file takes HTTP request and directs it to right place
+
 namespace StockFlow.API.Controllers;
 
 [ApiController]
