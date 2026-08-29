@@ -55,6 +55,9 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();

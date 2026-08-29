@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StockFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>StockFlow</h1>
+    </header>
+
+    <main>
+        <section id="login-section">
+            <h2>Login</h2>
+            <input type="text" id="username-input" placeholder="Username">
+            <input type="password" id="password-input" placeholder="Password">
+            <button id="login-button">Log In</button>
+            <button id="register-button">Register</button>
+            <p id="login-status"></p>
+        </section>
+
+        <section id="chat-section">
+            <h2><img src="robot.svg" alt="StockBot" class="bot-icon-header"> Ask StockBot</h2>
+            <div id="chat-log"></div>
+            <div id="suggestions">
+                <button class="suggestion-chip">Which items are running low?</button>
+                <button class="suggestion-chip">Show me everything in stock</button>
+            </div>
+            <input type="text" id="question-input" placeholder="e.g. which items are running low?">
+            <button id="ask-button">Send</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

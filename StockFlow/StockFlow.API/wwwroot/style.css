@@ -1,0 +1,143 @@
+:root {
+    --ink: #14213d;
+    --ink-darker: #0d1526;
+    --amber: #d97706;
+    --amber-dark: #b45309;
+    --cream: #faf6ef;
+    --card: #fffdf9;
+    --border: #e5ddd0;
+    --text: #1f2430;
+}
+
+body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    margin: 0;
+}
+
+header {
+    background: var(--ink-darker);
+    padding: 22px 0;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--cream);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--cream);
+    color: var(--text);
+}
+
+button {
+    padding: 10px 16px;
+    background: var(--amber);
+    color: var(--ink-darker);
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: var(--amber-dark);
+}
+
+#chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px 14px;
+    border-radius: 6px;
+    max-width: 80%;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: var(--ink);
+    color: var(--cream);
+}
+
+.message.ai {
+    align-self: flex-start;
+    background: #f1e9d8;
+    color: var(--ink-darker);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+}
+
+.bot-icon-header {
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+}
+
+.bot-icon-message {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+#suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.suggestion-chip {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.suggestion-chip:hover {
+    background: var(--ink);
+    color: var(--cream);
+}
