@@ -9,7 +9,7 @@ namespace StockFlow.API.Repositories;
 
 public class ItemRepository(AppDbContext context) : IItemRepository
 {
-    public async Task<IEnumerable<Item>> GetAllAsync(int? warehouseId = null, bool lowStockOnly = false)
+    public async Task<IEnumerable<Item>> GetAllAsync(int? warehouseId = null, bool lowStockOnly = false, string? nameSearch = null)
     {
         var query = context.Items.AsQueryable();
 
@@ -18,6 +18,11 @@ public class ItemRepository(AppDbContext context) : IItemRepository
 
         if (lowStockOnly)
             query = query.Where(i => i.Quantity < i.ReorderThreshold);
+
+        if (!string.IsNullOrWhiteSpace(nameSearch))
+            query = query.Where(i =>
+                EF.Functions.ILike(i.Name, $"%{nameSearch}%") ||
+                EF.Functions.ILike(i.Sku, $"%{nameSearch}%"));
 
         return await query.ToListAsync();
     }

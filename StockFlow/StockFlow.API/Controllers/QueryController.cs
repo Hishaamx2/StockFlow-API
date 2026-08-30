@@ -13,7 +13,7 @@ public class QueryController(IAiQueryService aiQueryService) : ControllerBase
     [Authorize]
     public async Task<ActionResult<QueryResponseDto>> Ask(QueryRequestDto dto)
     {
-        var result = await aiQueryService.AskAsync(dto.Question);
+        var result = await aiQueryService.AskAsync(dto.Question, dto.History);
         return Ok(result);
     }
 }

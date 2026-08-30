@@ -141,3 +141,42 @@ button:hover {
     background: var(--ink);
     color: var(--cream);
 }
+
+#inventory-container {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.warehouse-group {
+    margin-bottom: 16px;
+}
+
+.warehouse-group h3 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    color: var(--ink);
+}
+
+.warehouse-group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item-row {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.item-row.low-stock {
+    background: #fdecc8;
+    border-left: 3px solid var(--amber);
+}
+
+.no-items {
+    font-size: 13px;
+    color: #7a7267;
+    font-style: italic;
+}

@@ -4,5 +4,5 @@ namespace StockFlow.API.Interfaces;
 
 public interface IAiQueryService
 {
-    Task<QueryResponseDto> AskAsync(string question);
+    Task<QueryResponseDto> AskAsync(string question, List<ConversationTurn>? history);
 }

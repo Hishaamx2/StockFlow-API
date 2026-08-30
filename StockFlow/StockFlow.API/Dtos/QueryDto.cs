@@ -1,5 +1,7 @@
 namespace StockFlow.API.Dtos;
 
-public record QueryRequestDto(string Question);
+public record ConversationTurn(string Question, string Answer);
 
-public record QueryResponseDto(int? WarehouseId, bool LowStockOnly, IEnumerable<ItemDto> Items);
+public record QueryRequestDto(string Question, List<ConversationTurn>? History = null);
+
+public record QueryResponseDto(string Answer);

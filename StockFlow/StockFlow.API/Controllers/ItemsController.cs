@@ -15,9 +15,10 @@ public class ItemsController(IItemRepository itemRepository) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ItemDto>>> GetAll(
         [FromQuery] int? warehouseId,
-        [FromQuery] bool lowStockOnly = false)
+        [FromQuery] bool lowStockOnly = false,
+        [FromQuery] string? nameSearch = null)
     {
-        var items = await itemRepository.GetAllAsync(warehouseId, lowStockOnly);
+        var items = await itemRepository.GetAllAsync(warehouseId, lowStockOnly, nameSearch);
         return Ok(items.Select(ToDto));
     }
 
