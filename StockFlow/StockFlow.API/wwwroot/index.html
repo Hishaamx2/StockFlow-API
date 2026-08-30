@@ -11,16 +11,19 @@
 <body>
 
     <header>
+        <img src="logo.svg" alt="StockFlow logo" id="site-logo">
         <h1>StockFlow</h1>
     </header>
 
     <main>
         <section id="login-section">
-            <h2>Login</h2>
+            <div id="auth-tabs">
+                <button id="login-tab" class="auth-tab active">Login</button>
+                <button id="register-tab" class="auth-tab">Register</button>
+            </div>
             <input type="text" id="username-input" placeholder="Username">
             <input type="password" id="password-input" placeholder="Password">
-            <button id="login-button">Log In</button>
-            <button id="register-button">Register</button>
+            <button id="auth-submit-button">Log In</button>
             <p id="login-status"></p>
         </section>
 
@@ -32,11 +35,7 @@
         <section id="chat-section">
             <h2><img src="robot.svg" alt="StockBot" class="bot-icon-header"> Ask StockBot</h2>
             <div id="chat-log"></div>
-            <div id="suggestions">
-                <button class="suggestion-chip">Which items are running low?</button>
-                <button class="suggestion-chip">Show me everything in stock</button>
-            </div>
-            <input type="text" id="question-input" placeholder="e.g. which items are running low?">
+            <input type="text" id="question-input" placeholder="Type your question...">
             <button id="ask-button">Send</button>
         </section>
     </main>

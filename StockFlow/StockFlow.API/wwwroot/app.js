@@ -1,17 +1,34 @@
 let authToken = null;
 let conversationHistory = [];
+let authMode = "login";
 
-const loginButton = document.getElementById("login-button");
-const registerButton = document.getElementById("register-button");
+const loginTab = document.getElementById("login-tab");
+const registerTab = document.getElementById("register-tab");
 const usernameInput = document.getElementById("username-input");
 const passwordInput = document.getElementById("password-input");
+const authSubmitButton = document.getElementById("auth-submit-button");
 const loginStatus = document.getElementById("login-status");
 
 const askButton = document.getElementById("ask-button");
 const questionInput = document.getElementById("question-input");
 const chatLog = document.getElementById("chat-log");
 
-async function authenticate(endpoint, failMessage) {
+function setAuthMode(mode) {
+    authMode = mode;
+    loginTab.classList.toggle("active", mode === "login");
+    registerTab.classList.toggle("active", mode === "register");
+    authSubmitButton.textContent = mode === "login" ? "Log In" : "Register";
+}
+
+loginTab.addEventListener("click", () => setAuthMode("login"));
+registerTab.addEventListener("click", () => setAuthMode("register"));
+
+async function authenticate() {
+    const endpoint = authMode === "login" ? "/api/auth/login" : "/api/auth/register";
+    const failMessage = authMode === "login"
+        ? "Login failed. Check your username/password."
+        : "Registration failed. Username may already be taken.";
+
     const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,11 +48,7 @@ async function authenticate(endpoint, failMessage) {
     loginStatus.textContent = "Logged in!";
 }
 
-loginButton.addEventListener("click", () =>
-    authenticate("/api/auth/login", "Login failed. Check your username/password."));
-
-registerButton.addEventListener("click", () =>
-    authenticate("/api/auth/register", "Registration failed. Username may already be taken."));
+authSubmitButton.addEventListener("click", authenticate);
 
 async function askQuestion(question) {
     if (question === "") return;
@@ -72,10 +85,6 @@ async function askQuestion(question) {
 }
 
 askButton.addEventListener("click", () => askQuestion(questionInput.value.trim()));
-
-document.querySelectorAll(".suggestion-chip").forEach(chip => {
-    chip.addEventListener("click", () => askQuestion(chip.textContent));
-});
 
 const inventoryContainer = document.getElementById("inventory-container");
 
@@ -149,3 +158,8 @@ function addMessage(text, sender) {
     chatLog.appendChild(messageDiv);
     chatLog.scrollTop = chatLog.scrollHeight;
 }
+
+addMessage(
+    "Hi, I'm StockBot. Ask me anything about your inventory, item counts, specific products, warehouses, low stock, whatever you're curious about.",
+    "ai"
+);

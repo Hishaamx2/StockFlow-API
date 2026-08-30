@@ -19,13 +19,21 @@ body {
 header {
     background: var(--ink-darker);
     padding: 22px 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
 
 header h1 {
     color: var(--cream);
     margin: 0;
     letter-spacing: 0.5px;
+}
+
+#site-logo {
+    width: 40px;
+    height: 40px;
 }
 
 main {
@@ -119,27 +127,32 @@ button:hover {
     margin-right: 6px;
 }
 
-#suggestions {
+#auth-tabs {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 4px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
 }
 
-.suggestion-chip {
+.auth-tab {
+    background: transparent;
+    color: #7a7267;
+    font-weight: 600;
+    border: none;
+    border-radius: 0;
+    padding: 8px 4px;
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+}
+
+.auth-tab:hover {
     background: transparent;
     color: var(--ink);
-    border: 1px solid var(--ink);
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 400;
-    cursor: pointer;
 }
 
-.suggestion-chip:hover {
-    background: var(--ink);
-    color: var(--cream);
+.auth-tab.active {
+    color: var(--ink);
+    border-bottom: 2px solid var(--amber);
 }
 
 #inventory-container {
