@@ -22,3 +22,6 @@ jobs:
 
       - name: Build
         run: dotnet build StockFlow/StockFlow.API/StockFlow.API.csproj --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test StockFlow/StockFlow.API.Tests/StockFlow.API.Tests.csproj --configuration Release

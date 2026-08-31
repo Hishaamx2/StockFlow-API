@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using StockFlow.API.Data;
 using StockFlow.API.Interfaces;
 using StockFlow.API.Models;
+using StockFlow.API.Services;
 
 //Does the requested HTTP task
 
@@ -20,9 +21,15 @@ public class ItemRepository(AppDbContext context) : IItemRepository
             query = query.Where(i => i.Quantity < i.ReorderThreshold);
 
         if (!string.IsNullOrWhiteSpace(nameSearch))
+        {
+            var singular = SearchTermHelper.Singularize(nameSearch);
+
             query = query.Where(i =>
                 EF.Functions.ILike(i.Name, $"%{nameSearch}%") ||
-                EF.Functions.ILike(i.Sku, $"%{nameSearch}%"));
+                EF.Functions.ILike(i.Sku, $"%{nameSearch}%") ||
+                EF.Functions.ILike(i.Name, $"%{singular}%") ||
+                EF.Functions.ILike(i.Sku, $"%{singular}%"));
+        }
 
         return await query.ToListAsync();
     }
