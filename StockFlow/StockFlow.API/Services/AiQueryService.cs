@@ -31,7 +31,7 @@ public class AiQueryService(
         Guidance:
         - list_items: user wants to see items, optionally filtered by warehouse name, low stock, or item name/SKU search
         - count_items: user wants a count of how many distinct items/products match a filter (not asking about a specific named product's stock)
-        - total_quantity: user wants a total unit count, including "how many X do I have" for a specific named product (this means units in stock, not number of product listings), and "is X in stock" / "do we have any X" questions
+        - total_quantity: user wants a total unit count. This covers two cases: (1) "how many X do I have" for a specific named product (units in stock, not number of product listings), and "is X in stock" / "do we have any X" questions; (2) with NO product named, words like "inventory", "stock", or "units" (as opposed to "items" or "products") mean the sum of every unit across all items, e.g. "total inventory count", "how much stock do we have", "total units in stock"
         - count_warehouses: user wants to know how many warehouses exist
         - highest_stock_items: user wants to see items with the most/highest quantity in stock ("what's high in stock", "what do we have the most of", "best stocked items", "what's overstocked"), optionally scoped to a warehouse
         - compare_warehouses: user wants to compare warehouses against each other by stock level ("which warehouse has the most/least stock", "which warehouse is best/worst stocked", "compare warehouse stock")
@@ -64,6 +64,8 @@ public class AiQueryService(
         "how many USB-C cables do I have" -> {"action": "total_quantity", "warehouseName": null, "lowStockOnly": false, "itemNameSearch": "USB-C"}
         "do we have any mice in stock" -> {"action": "total_quantity", "warehouseName": null, "lowStockOnly": false, "itemNameSearch": "mice"}
         "how many different items do you have" -> {"action": "count_items", "warehouseName": null, "lowStockOnly": false, "itemNameSearch": null}
+        "what is the total inventory count" -> {"action": "total_quantity", "warehouseName": null, "lowStockOnly": false, "itemNameSearch": null}
+        "how much total stock do we have" -> {"action": "total_quantity", "warehouseName": null, "lowStockOnly": false, "itemNameSearch": null}
         "what is in warehouse Riverside DC" -> {"action": "list_items", "warehouseName": "Riverside DC", "lowStockOnly": false, "itemNameSearch": null}
         "which items are running low" -> {"action": "list_items", "warehouseName": null, "lowStockOnly": true, "itemNameSearch": null}
         "what needs to be reordered" -> {"action": "list_items", "warehouseName": null, "lowStockOnly": true, "itemNameSearch": null}
